@@ -10,18 +10,37 @@ export function EachPost(props) {
             alt = "Post Image"
             />
         </div>
-    const message = 
+
+    const messageAndCreated=  
         <div>
             <p className = "post-message">
                 {props.message}
             </p>
+            <p className = "post-message">
+                {props.createdAt}
+            </p>
         </div>
+
+    const message = 
+    <div>
+        <p className = "post-message">
+            {props.message}
+        </p>
+    </div>
     
-    const postCard =
-        <div>
-        {image}
-        {message}
-        </div>
-    return (
-        postCard
-)}
+    if (props.createdAt) {
+        return (
+            <div>
+            {image}
+            {messageAndCreated}
+            </div>
+        )
+    } else {
+        return (
+            <div>
+            {image}
+            {message}
+            </div>
+        )
+    }
+}
