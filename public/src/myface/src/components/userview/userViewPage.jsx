@@ -1,23 +1,24 @@
 import React, { useState, useEffect } from 'react';
+import { useParams } from 'react-router-dom';
 import { classicNameResolver } from 'typescript';
 import { UserCoverImage } from './coverimage';
 import { UserProfileHeader } from './userprofileheader';
 import { EachPost } from '../eachpost';
 
-export function UserViewPage(props) {
+export function UserViewPage() {
     const [contentFromUser, setContent] = useState();
-
+    const {userId} = useParams();
 
     useEffect(function() {
         async function fetchData() {
-            const response = await fetch(`http://localhost:3001/users/5`);
+            const response = await fetch(`http://localhost:3001/users/${userId}`);
             const json = await response.json();
 
             setContent(json);
         }
 
         fetchData();
-    }, [props.userId]);
+    }, [userId]);
 
     if (!contentFromUser){
         return <p>Content is loading...</p>
