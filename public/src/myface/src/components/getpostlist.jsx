@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from "react";
 import { EachPost } from "./eachpost";
 
-export function Postlist(props) {
+export function PostList() {
     const [posts, setPosts] = useState([]); 
 
     useEffect(function() {
