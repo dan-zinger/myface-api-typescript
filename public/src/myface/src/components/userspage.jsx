@@ -24,6 +24,7 @@ export function UsersPage() {
             <section>
                 <ol>
                     {users.results.map( (user) => 
+                        <a href = {"http://localhost:3000/users/"+ user.id}>
                         <li> 
                             <p>{user.name}</p>
                             <p>{user.username}</p>
@@ -32,6 +33,7 @@ export function UsersPage() {
                                 alt = "Profile Picture"
                             />
                         </li>
+                        </a>
                     )}
                 
 
