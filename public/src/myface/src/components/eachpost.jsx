@@ -1,46 +1,74 @@
-import React from "react";
-import { Postlist } from "./getpostlist";
+import React, { useState, useEffect } from "react";
+import { PostList } from "./getpostlist";
+import moment from "moment";
 
 export function EachPost(props) {
     const image = 
         <div>
             <img 
             className = "post-image"
-            src = {props.src}
+            src = {props.post.imageUrl}
             alt = "Post Image"
+            width ="300"
             />
         </div>
 
     const messageAndCreated=  
         <div>
             <p className = "post-message">
-                {props.message}
+                {props.post.message}
             </p>
             <p className = "post-message">
-                {props.createdAt}
+                {moment(props.post.createdAt).format('DD/MM/YYYY')}
             </p>
         </div>
-
-    const message = 
-    <div>
-        <p className = "post-message">
-            {props.message}
-        </p>
-    </div>
-    
-    if (props.createdAt) {
+        
+    if (props.classname === "each-post") {
         return (
             <div>
-            {image}
-            {messageAndCreated}
+                {messageAndCreated}
+                {image}
+                <LikesAndDislikes postId ={props.post.id} likedBy = {props.post.likedBy} dislikedBy = {props.post.dislikedBy}/>
             </div>
         )
     } else {
         return (
             <div>
             {image}
-            {message}
+            {messageAndCreated}
             </div>
         )
     }
+}
+
+export function LikesAndDislikes (props) {
+    const [postId, setPostId] = useState();
+   
+    function handleSubmitlike(event){
+        event.preventDefault();
+        return fetch(`http://localhost:3001/posts/${postId}/like`,{
+            method: 'POST',
+        })
+    }
+
+    function handleSubmitdislike(event){
+        event.preventDefault();
+        return fetch(`http://localhost:3001/posts/${postId}/dislike`,{
+            method: 'POST',
+        })
+    }
+   
+    return <div>
+        <p> 
+            <form onSubmit ={(e)=>{handleSubmitlike(e)}}>
+                <button type="submit" onClick = {()=>{setPostId(props.postId)}}> 👍 </button> {props.likedBy.length}
+            </form>
+            <form onSubmit ={(e)=>{handleSubmitdislike(e)}}>
+                <button type="submit" onClick = {()=>{setPostId(props.postId)}}>👎 </button> {props.dislikedBy.length}
+            </form>
+        </p>
+    </div>
+
+    
+
 }

@@ -48,11 +48,8 @@ export function UserViewPage(props) {
                         {contentFromUser.posts.map( (post) => 
                             <li>
                                 <EachPost
-                                    classname = "each-post"
-                                    src = {post.imageUrl}
-                                    alt = "Post Image"
-                                    message = {post.message}
-                                    createdAt = {post.createdAt}
+                                    classname = "each-user-post"
+                                    post = {post}
                                 />
                             </li>
                 )}
@@ -68,11 +65,12 @@ export function UserViewPage(props) {
                         {contentFromUser.likes.map( (post) => 
                             <li>
                                 <EachPost
-                                    classname = "each-post"
-                                    src = {post.imageUrl}
+                                    classname = "each-user-post"
+                                    /*src = {post.imageUrl}
                                     alt = "Post Image"
                                     message = {post.message}
-                                    createdAt = {post.createdAt}
+                                    createdAt = {post.createdAt}*/
+                                    post = {post}
                                 />
                             </li>
                 )}
@@ -88,11 +86,12 @@ export function UserViewPage(props) {
                         {contentFromUser.dislikes.map( (post) => 
                             <li>
                                 <EachPost
-                                    classname = "each-post"
-                                    src = {post.imageUrl}
+                                    classname = "each-user-post"
+                                     /*src = {post.imageUrl}
                                     alt = "Post Image"
                                     message = {post.message}
-                                    createdAt = {post.createdAt}
+                                    createdAt = {post.createdAt}*/
+                                    post = {post}
                                 />
                             </li>
                 )}
