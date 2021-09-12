@@ -36,6 +36,7 @@ export function UsersPage() {
         return(
             <>
             <h2> User Profiles</h2>
+            <a href="url">Create New User</a>
             <section>
                 <ol start = {listStart} >
                     {users.results.map( (user) => 
